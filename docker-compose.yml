@@ -1,0 +1,26 @@
+services:
+  embedding-api:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    image: embedding-project:local
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./artifacts:/models:ro
+    environment:
+      MODEL_PATH: /models/model-tiny
+      INDEX_PATH: /models/index-tiny
+      EMBEDDING_MAX_BATCH_SIZE: "64"
+      EMBEDDING_MAX_TEXT_LENGTH: "4096"
+    read_only: true
+    tmpfs:
+      - /tmp:size=64m,noexec,nosuid
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    mem_limit: 2g
+    cpus: 2
+    restart: unless-stopped
+
