@@ -1,0 +1,6 @@
+method: lexical
+per_query: 5
+seed: 42
+exclude_known_positives: true
+semi_hard_margin: 0.1
+
