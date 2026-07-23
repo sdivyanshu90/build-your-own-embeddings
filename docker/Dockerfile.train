@@ -1,0 +1,24 @@
+FROM python:3.11-slim-bookworm
+
+ENV PIP_DISABLE_PIP_VERSION_CHECK=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PYTHONUNBUFFERED=1
+WORKDIR /workspace
+COPY pyproject.toml ./
+COPY constraints ./constraints
+RUN python -m pip install --upgrade "pip==25.3" \
+    && python -m pip install "hatchling==1.27.0" \
+    && PIP_CONSTRAINT=/workspace/constraints/runtime.txt \
+      python -m pip install \
+        faiss-cpu fastapi httpx numpy pandas prometheus-client pydantic \
+        pydantic-settings PyYAML safetensors scikit-learn torch typer uvicorn
+COPY README.md LICENSE ./
+COPY src ./src
+RUN PIP_CONSTRAINT=/workspace/constraints/runtime.txt \
+    python -m pip install --no-build-isolation --no-deps .
+RUN groupadd --system --gid 10001 embedding \
+    && useradd --system --uid 10001 --gid embedding --home /workspace embedding \
+    && chown -R embedding:embedding /workspace
+USER 10001:10001
+ENTRYPOINT ["embedding-project"]
+CMD ["--help"]
