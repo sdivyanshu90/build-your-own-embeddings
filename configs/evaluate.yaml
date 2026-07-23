@@ -1,0 +1,5 @@
+batch_size: 64
+fixed_seed: 42
+k_values: [1, 5, 10]
+tie_breaking: input_order
+
