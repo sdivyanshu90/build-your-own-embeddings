@@ -1,0 +1,17 @@
+# Direct runtime/build pins used by release containers. Regenerate and test deliberately.
+faiss-cpu==1.14.3
+fastapi==0.139.2
+hatchling==1.27.0
+httpx==0.28.1
+numpy==2.4.6
+pandas==2.3.3
+prometheus-client==0.25.0
+pydantic==2.13.4
+pydantic-settings==2.14.2
+PyYAML==6.0.3
+safetensors==0.8.0
+scikit-learn==1.9.0
+torch==2.7.1
+typer==0.27.0
+uvicorn==0.51.0
+
