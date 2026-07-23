@@ -1,0 +1,2 @@
+{"query_id":"q1","query":"Where does the kitten rest?","positive_documents":["A kitten sits on a rug."],"negative_documents":["A railway service arrives at the platform."]}
+{"query_id":"q2","query":"How can I make a loaf?","positive_documents":["A simple homemade bread recipe."],"negative_documents":["A storm brings wet weather."]}
