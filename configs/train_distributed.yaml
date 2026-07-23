@@ -1,0 +1,28 @@
+# Launch one process per GPU and give each process a disjoint data shard.
+# The current Trainer is single-process; see docs/scaling.md for the DDP integration boundary.
+model:
+  vocabulary_size: 32768
+  hidden_size: 512
+  embedding_dimension: 384
+  num_attention_heads: 8
+  num_hidden_layers: 8
+  intermediate_size: 2048
+  max_sequence_length: 256
+  pooling: mean
+  normalize_embeddings: true
+  dropout: 0.1
+training:
+  objective: multiple_negatives_ranking
+  epochs: 3
+  batch_size: 128
+  gradient_accumulation_steps: 2
+  learning_rate: 0.0001
+  weight_decay: 0.01
+  warmup_ratio: 0.1
+  max_gradient_norm: 1.0
+  temperature: 0.05
+  mixed_precision: true
+  device: cuda
+  seed: 42
+  checkpoint_dir: artifacts/checkpoints-distributed
+
