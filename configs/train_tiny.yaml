@@ -1,0 +1,33 @@
+model:
+  encoder_type: local
+  vocabulary_size: 128
+  pad_token_id: 0
+  hidden_size: 16
+  embedding_dimension: 8
+  num_attention_heads: 2
+  num_hidden_layers: 1
+  intermediate_size: 32
+  max_sequence_length: 24
+  pooling: mean
+  normalize_embeddings: true
+  projection: true
+  layer_normalization: false
+  dropout: 0.0
+training:
+  objective: multiple_negatives_ranking
+  epochs: 1
+  batch_size: 4
+  gradient_accumulation_steps: 1
+  learning_rate: 0.005
+  weight_decay: 0.01
+  warmup_ratio: 0.0
+  max_gradient_norm: 1.0
+  temperature: 0.1
+  margin: 0.2
+  mixed_precision: false
+  device: cpu
+  seed: 42
+  deterministic: true
+  checkpoint_dir: artifacts/checkpoints-tiny
+  early_stopping_patience: null
+
